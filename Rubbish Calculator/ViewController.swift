@@ -69,6 +69,7 @@ class ViewController: UIViewController {
             leftStrValue = ""
             rightStrValue = ""
             resultStrVaule = ""
+            currentOperator = CalcOperator.Empty
         }
         
         runningNumber = ""
