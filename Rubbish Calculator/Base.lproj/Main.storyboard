@@ -77,6 +77,9 @@
                                                 <state key="normal" title="/">
                                                     <color key="titleColor" red="0.20000000300000001" green="0.20000000300000001" blue="0.20000000300000001" alpha="1" colorSpace="calibratedRGB"/>
                                                 </state>
+                                                <connections>
+                                                    <action selector="divideBtnPressedWithSender:" destination="BYZ-38-t0r" eventType="touchUpInside" id="xJ1-HR-Byj"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                     </stackView>
@@ -123,6 +126,9 @@
                                                 <state key="normal" title="*">
                                                     <color key="titleColor" red="0.20000000300000001" green="0.20000000300000001" blue="0.20000000300000001" alpha="1" colorSpace="calibratedRGB"/>
                                                 </state>
+                                                <connections>
+                                                    <action selector="multiplyBtnPressedWithSender:" destination="BYZ-38-t0r" eventType="touchUpInside" id="DG2-Q7-h0N"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                     </stackView>
@@ -169,6 +175,9 @@
                                                 <state key="normal" title="-">
                                                     <color key="titleColor" red="0.20000000300000001" green="0.20000000300000001" blue="0.20000000300000001" alpha="1" colorSpace="calibratedRGB"/>
                                                 </state>
+                                                <connections>
+                                                    <action selector="subtractBtnPressedWithSender:" destination="BYZ-38-t0r" eventType="touchUpInside" id="WGS-wb-YlO"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                     </stackView>
@@ -215,6 +224,9 @@
                                                 <state key="normal" title="+">
                                                     <color key="titleColor" red="0.20000000300000001" green="0.20000000300000001" blue="0.20000000300000001" alpha="1" colorSpace="calibratedRGB"/>
                                                 </state>
+                                                <connections>
+                                                    <action selector="addBtnPressedWithSender:" destination="BYZ-38-t0r" eventType="touchUpInside" id="vBY-Gh-sSq"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                     </stackView>
