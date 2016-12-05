@@ -50,6 +50,9 @@
                                                 <state key="normal" title="C">
                                                     <color key="titleColor" red="0.20000000300000001" green="0.20000000300000001" blue="0.20000000300000001" alpha="1" colorSpace="calibratedRGB"/>
                                                 </state>
+                                                <connections>
+                                                    <action selector="cancelBtnPressedWithSender:" destination="BYZ-38-t0r" eventType="touchUpInside" id="t1u-gH-U3Y"/>
+                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MDe-YO-xYP">
                                                 <rect key="frame" x="80.5" y="0.0" width="79" height="63"/>
