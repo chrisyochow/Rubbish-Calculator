@@ -50,10 +50,10 @@ class ViewController: UIViewController {
     }
     
     @IBAction func cancelBtnPressed(sender: UIButton) {
-        playBtnSound()
+        //playBtnSound()
         
         runningNumber = ""
-        mainDisplayLabel.text = runningNumber
+        mainDisplayLabel.text = "0"
     }
     
     func playBtnSound() {
@@ -64,4 +64,3 @@ class ViewController: UIViewController {
         btnSoundPlayer.play()
     }
 }
-
