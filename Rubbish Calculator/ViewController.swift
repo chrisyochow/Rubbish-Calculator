@@ -49,6 +49,13 @@ class ViewController: UIViewController {
         mainDisplayLabel.text = runningNumber
     }
     
+    @IBAction func cancelBtnPressed(sender: UIButton) {
+        //playBtnSound()
+        
+        runningNumber = ""
+        mainDisplayLabel.text = "0"
+    }
+    
     func playBtnSound() {
         if btnSoundPlayer.isPlaying{
             btnSoundPlayer.stop()
@@ -57,4 +64,3 @@ class ViewController: UIViewController {
         btnSoundPlayer.play()
     }
 }
-
