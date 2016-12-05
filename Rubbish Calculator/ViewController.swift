@@ -16,6 +16,9 @@ class ViewController: UIViewController {
     
     var btnSoundPlayer: AVAudioPlayer!
     var runningNumber = ""
+    var leftStrValue = ""
+    var rightStrValue = ""
+    var resultStrVaule = ""
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,7 +26,7 @@ class ViewController: UIViewController {
         let btnSoundPath = Bundle.main.path(forResource: "ButtonSound", ofType: "wav")
         let btnSoundURL = URL(fileURLWithPath: btnSoundPath!)
         
-        mainDisplayLabel.text = ""
+        mainDisplayLabel.text = "0"
         operatorLabel.text = ""
         
         do {
@@ -39,8 +42,8 @@ class ViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 
-    @IBAction func numberBtnPassed(sender: UIButton) {
-        playBtnSound()
+    @IBAction func numberBtnPressed(sender: UIButton) {
+        //playBtnSound()
         
         runningNumber += "\(sender.tag)"
         mainDisplayLabel.text = runningNumber
