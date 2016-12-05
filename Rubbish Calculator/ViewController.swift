@@ -60,9 +60,18 @@ class ViewController: UIViewController {
     
     @IBAction func cancelBtnPressed(sender: UIButton) {
         //playBtnSound()
+
+        if operatorLabel.text != "" && mainDisplayLabel.text != ""{
+            mainDisplayLabel.text = ""
+        } else {
+            mainDisplayLabel.text = "0"
+            operatorLabel.text = ""
+            leftStrValue = ""
+            rightStrValue = ""
+            resultStrVaule = ""
+        }
         
         runningNumber = ""
-        mainDisplayLabel.text = "0"
     }
     
     @IBAction func divideBtnPressed(sender: UIButton) {
