@@ -7,12 +7,31 @@
 //
 
 import UIKit
+import AVFoundation
 
 class ViewController: UIViewController {
+    
+    @IBOutlet weak var mainDisplayLabel: UILabel!
+    @IBOutlet weak var operatorLabel: UILabel!
+    
+    var btnSoundPlayer: AVAudioPlayer!
+    var runningNumber = ""
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        
+        let btnSoundPath = Bundle.main.path(forResource: "ButtonSound", ofType: "wav")
+        let btnSoundURL = URL(fileURLWithPath: btnSoundPath!)
+        
+        mainDisplayLabel.text = ""
+        operatorLabel.text = ""
+        
+        do {
+            try btnSoundPlayer = AVAudioPlayer(contentsOf: btnSoundURL)
+            btnSoundPlayer.prepareToPlay()
+        } catch let err as NSError {
+            print(err.debugDescription)
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -20,6 +39,19 @@ class ViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 
-
+    @IBAction func numberBtnPassed(sender: UIButton) {
+        playBtnSound()
+        
+        runningNumber += "\(sender.tag)"
+        mainDisplayLabel.text = runningNumber
+    }
+    
+    func playBtnSound() {
+        if btnSoundPlayer.isPlaying{
+            btnSoundPlayer.stop()
+        }
+        
+        btnSoundPlayer.play()
+    }
 }
 

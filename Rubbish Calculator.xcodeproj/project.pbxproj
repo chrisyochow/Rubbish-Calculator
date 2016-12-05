@@ -12,6 +12,7 @@
 		BE570A2F1DEC8DBC00F72C93 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BE570A2D1DEC8DBC00F72C93 /* Main.storyboard */; };
 		BE570A311DEC8DBC00F72C93 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BE570A301DEC8DBC00F72C93 /* Assets.xcassets */; };
 		BE570A341DEC8DBC00F72C93 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BE570A321DEC8DBC00F72C93 /* LaunchScreen.storyboard */; };
+		BEFAE1851DF556A30001E2BD /* ButtonSound.wav in Resources */ = {isa = PBXBuildFile; fileRef = BEFAE1841DF556A30001E2BD /* ButtonSound.wav */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +23,7 @@
 		BE570A301DEC8DBC00F72C93 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		BE570A331DEC8DBC00F72C93 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		BE570A351DEC8DBC00F72C93 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BEFAE1841DF556A30001E2BD /* ButtonSound.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = ButtonSound.wav; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,6 +56,7 @@
 		BE570A281DEC8DBC00F72C93 /* Rubbish Calculator */ = {
 			isa = PBXGroup;
 			children = (
+				BEFAE1841DF556A30001E2BD /* ButtonSound.wav */,
 				BE570A291DEC8DBC00F72C93 /* AppDelegate.swift */,
 				BE570A2B1DEC8DBC00F72C93 /* ViewController.swift */,
 				BE570A2D1DEC8DBC00F72C93 /* Main.storyboard */,
@@ -123,6 +126,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BEFAE1851DF556A30001E2BD /* ButtonSound.wav in Resources */,
 				BE570A341DEC8DBC00F72C93 /* LaunchScreen.storyboard in Resources */,
 				BE570A311DEC8DBC00F72C93 /* Assets.xcassets in Resources */,
 				BE570A2F1DEC8DBC00F72C93 /* Main.storyboard in Resources */,
@@ -301,6 +305,7 @@
 				BE570A3A1DEC8DBC00F72C93 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
