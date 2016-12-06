@@ -15,29 +15,30 @@ class ViewController: UIViewController {
     @IBOutlet weak var operatorLabel: UILabel!
     @IBOutlet weak var cancelBtn: UIButton!
     
-    enum CalcOperator: String {
+    enum CalculationOperators: String {
         case Divide = "/"
         case Multiply = "*"
         case Subtract = "-"
         case Add = "+"
+        case Equal = "="
         case Empty = "Empty"
     }
     
     var btnSoundPlayer: AVAudioPlayer!
+    
     var runningNumber = ""
     var leftStrValue = ""
     var rightStrValue = ""
-    var resultStrVaule = ""
-    var currentOperator = CalcOperator.Empty
+    var resultStrValue = ""
+    var currentOperator = CalculationOperators.Empty
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        updateUI()
+        
         let btnSoundPath = Bundle.main.path(forResource: "ButtonSound", ofType: "wav")
         let btnSoundURL = URL(fileURLWithPath: btnSoundPath!)
-        
-        mainDisplayLabel.text = "0"
-        operatorLabel.text = ""
         
         do {
             try btnSoundPlayer = AVAudioPlayer(contentsOf: btnSoundURL)
@@ -56,104 +57,133 @@ class ViewController: UIViewController {
         //playBtnSound()
         
         runningNumber += "\(sender.tag)"
-        mainDisplayLabel.text = runningNumber
+        
+        updateUI()
     }
     
     @IBAction func cancelBtnPressed(sender: UIButton) {
         //playBtnSound()
-
-        if operatorLabel.text != "" && mainDisplayLabel.text != "" && resultStrVaule == "" {
-            mainDisplayLabel.text = ""
-            
-            cancelBtn.setTitle("AC", for: UIControlState.normal)
+        
+        if runningNumber != "" {
+            runningNumber = ""
         } else {
-            mainDisplayLabel.text = "0"
-            operatorLabel.text = ""
             leftStrValue = ""
             rightStrValue = ""
-            resultStrVaule = ""
-            currentOperator = CalcOperator.Empty
-        }
-        
-        runningNumber = ""
-    }
-    
-    @IBAction func divideBtnPressed(sender: UIButton) {
-        //playBtnSound()
-        
-        processCalculation(calcOperator: CalcOperator.Divide)
-    }
-    
-    @IBAction func multiplyBtnPressed(sender: UIButton) {
-        //playBtnSound()
-        
-        processCalculation(calcOperator: CalcOperator.Multiply)
-    }
-    
-    @IBAction func subtractBtnPressed(sender: UIButton) {
-        //playBtnSound()
-        
-        processCalculation(calcOperator: CalcOperator.Subtract)
-    }
-    
-    @IBAction func addBtnPressed(sender: UIButton) {
-        //playBtnSound()
-        
-        processCalculation(calcOperator: CalcOperator.Add)
-    }
-  
-    func processCalculation(calcOperator: CalcOperator) {
-        if currentOperator != CalcOperator.Empty && runningNumber != "" {
-            rightStrValue = runningNumber
-            
-            if currentOperator == CalcOperator.Divide {
-                resultStrVaule = "\(Double(leftStrValue)! / Double(rightStrValue)!)"
-            } else if currentOperator == CalcOperator.Multiply {
-                resultStrVaule = "\(Double(leftStrValue)! * Double(rightStrValue)!)"
-            } else if currentOperator == CalcOperator.Subtract {
-                resultStrVaule = "\(Double(leftStrValue)! - Double(rightStrValue)!)"
-            } else if currentOperator == CalcOperator.Add {
-                resultStrVaule = "\(Double(leftStrValue)! + Double(rightStrValue)!)"
-            }
-            
-            runningNumber = ""
-            leftStrValue = resultStrVaule
-            rightStrValue = ""
-            resultStrVaule = ""
-            currentOperator = calcOperator
-        } else {
-            if runningNumber != "" {
-                leftStrValue = mainDisplayLabel.text!
-            } else if resultStrVaule != "" {
-                leftStrValue = resultStrVaule
-            }
-            
-            runningNumber = ""
-            currentOperator = calcOperator
+            resultStrValue = ""
+            currentOperator = CalculationOperators.Empty
         }
         
         updateUI()
     }
     
-    func updateUI() {
-        if resultStrVaule != "" {
-            operatorLabel.text = "\(leftStrValue) \(currentOperator.rawValue) \(rightStrValue) ="
-            mainDisplayLabel.text = resultStrVaule
-        } else {
-            if currentOperator != CalcOperator.Empty {
-                operatorLabel.text = "\(leftStrValue) \(currentOperator.rawValue)"
-                
-                if runningNumber != "" {
-                    mainDisplayLabel.text = runningNumber
-                } else {
-                    mainDisplayLabel.text = ""
-                }
-            } else {
-                operatorLabel.text = ""
-                mainDisplayLabel.text = "0"
-
+    @IBAction func divideBtnPressed(sender: UIButton) {
+        //playBtnSound()
+        
+        performOperation(btnPressed: CalculationOperators.Divide)
+    }
+    
+    @IBAction func multiplyBtnPressed(sender: UIButton) {
+        //playBtnSound()
+        
+        performOperation(btnPressed: CalculationOperators.Multiply)
+    }
+    
+    @IBAction func subtractBtnPressed(sender: UIButton) {
+        //playBtnSound()
+        
+        performOperation(btnPressed: CalculationOperators.Subtract)
+    }
+    
+    @IBAction func addBtnPressed(sender: UIButton) {
+        //playBtnSound()
+        
+        performOperation(btnPressed: CalculationOperators.Add)
+    }
+    
+    @IBAction func equalBtnPressed(sender: UIButton) {
+        //playBtnSound()
+        
+        performOperation(btnPressed: CalculationOperators.Equal)
+    }
+    
+    func performOperation(btnPressed: CalculationOperators) {
+        if currentOperator == CalculationOperators.Empty || resultStrValue != "" {
+            if btnPressed != CalculationOperators.Equal {
+                leftStrValue = mainDisplayLabel.text!
+                rightStrValue = ""
+                resultStrValue = ""
+                runningNumber = ""
+                currentOperator = btnPressed
             }
+            
+            print("1")
+        } else {
+            if runningNumber != "" {
+                rightStrValue = runningNumber
+                
+                if currentOperator == CalculationOperators.Divide {
+                    resultStrValue = "\(Double(leftStrValue)! / Double(rightStrValue)!)"
+                } else if currentOperator == CalculationOperators.Multiply {
+                    resultStrValue = "\(Double(leftStrValue)! * Double(rightStrValue)!)"
+                } else if currentOperator == CalculationOperators.Subtract {
+                    resultStrValue = "\(Double(leftStrValue)! - Double(rightStrValue)!)"
+                } else if currentOperator == CalculationOperators.Add {
+                    resultStrValue = "\(Double(leftStrValue)! + Double(rightStrValue)!)"
+                }
+                
+                runningNumber = ""
+                
+                if btnPressed != CalculationOperators.Equal {
+                    leftStrValue = resultStrValue
+                    resultStrValue = ""
+                    rightStrValue = ""
+                }
+            }
+            
+            if btnPressed != CalculationOperators.Equal {
+                currentOperator = btnPressed
+            }
+            
+            print("2")
         }
+        
+        print("btnPressed = \(btnPressed)")
+        updateUI()
+    }
+    
+    func updateUI() {
+        if resultStrValue != "" {
+            operatorLabel.text = "\(leftStrValue) \(currentOperator.rawValue) \(rightStrValue) ="
+            mainDisplayLabel.text = resultStrValue
+            
+            cancelBtn.setTitle("AC", for: UIControlState.normal)
+        } else if currentOperator != CalculationOperators.Empty {
+            operatorLabel.text = "\(leftStrValue) \(currentOperator.rawValue)"
+            if runningNumber != "" {
+                mainDisplayLabel.text = runningNumber
+                
+                cancelBtn.setTitle("C", for: UIControlState.normal)
+            } else {
+                mainDisplayLabel.text = ""
+                
+                cancelBtn.setTitle("AC", for: UIControlState.normal)
+            }
+        } else {
+            operatorLabel.text = ""
+            if runningNumber != "" {
+                mainDisplayLabel.text = runningNumber
+            } else {
+                mainDisplayLabel.text = "0"
+            }
+            
+            cancelBtn.setTitle("AC", for: UIControlState.normal)
+        }
+        
+        print("runningNumber = \(runningNumber)")
+        print("leftStrValue = \(leftStrValue)")
+        print("rightStrValue = \(rightStrValue)")
+        print("resultStrValue = \(resultStrValue)")
+        print("currentOperator = \(currentOperator)")
     }
     
     func playBtnSound() {
