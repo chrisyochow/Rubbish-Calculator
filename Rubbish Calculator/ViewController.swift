@@ -13,6 +13,7 @@ class ViewController: UIViewController {
     
     @IBOutlet weak var mainDisplayLabel: UILabel!
     @IBOutlet weak var operatorLabel: UILabel!
+    @IBOutlet weak var cancelBtn: UIButton!
     
     enum CalcOperator: String {
         case Divide = "/"
@@ -61,8 +62,10 @@ class ViewController: UIViewController {
     @IBAction func cancelBtnPressed(sender: UIButton) {
         //playBtnSound()
 
-        if operatorLabel.text != "" && mainDisplayLabel.text != ""{
+        if operatorLabel.text != "" && mainDisplayLabel.text != "" && resultStrVaule == "" {
             mainDisplayLabel.text = ""
+            
+            cancelBtn.setTitle("AC", for: UIControlState.normal)
         } else {
             mainDisplayLabel.text = "0"
             operatorLabel.text = ""
@@ -104,42 +107,52 @@ class ViewController: UIViewController {
             rightStrValue = runningNumber
             
             if currentOperator == CalcOperator.Divide {
-                operatorLabel.text = "\(leftStrValue) / \(rightStrValue)"
                 resultStrVaule = "\(Double(leftStrValue)! / Double(rightStrValue)!)"
             } else if currentOperator == CalcOperator.Multiply {
-                operatorLabel.text = "\(leftStrValue) * \(rightStrValue)"
                 resultStrVaule = "\(Double(leftStrValue)! * Double(rightStrValue)!)"
             } else if currentOperator == CalcOperator.Subtract {
-                operatorLabel.text = "\(leftStrValue) - \(rightStrValue)"
                 resultStrVaule = "\(Double(leftStrValue)! - Double(rightStrValue)!)"
             } else if currentOperator == CalcOperator.Add {
-                operatorLabel.text = "\(leftStrValue) + \(rightStrValue)"
                 resultStrVaule = "\(Double(leftStrValue)! + Double(rightStrValue)!)"
             }
             
-            mainDisplayLabel.text = resultStrVaule
             runningNumber = ""
-            currentOperator = CalcOperator.Empty
+            leftStrValue = resultStrVaule
+            rightStrValue = ""
+            resultStrVaule = ""
+            currentOperator = calcOperator
         } else {
             if runningNumber != "" {
                 leftStrValue = mainDisplayLabel.text!
-            } else {
+            } else if resultStrVaule != "" {
                 leftStrValue = resultStrVaule
             }
-            currentOperator = calcOperator
             
-            if currentOperator == CalcOperator.Divide {
-                operatorLabel.text = "\(leftStrValue) /"
-            } else if currentOperator == CalcOperator.Multiply {
-                operatorLabel.text = "\(leftStrValue) *"
-            } else if currentOperator == CalcOperator.Subtract {
-                operatorLabel.text = "\(leftStrValue) -"
-            } else if currentOperator == CalcOperator.Add {
-                operatorLabel.text = "\(leftStrValue) +"
-            }
-
             runningNumber = ""
-            mainDisplayLabel.text = ""
+            currentOperator = calcOperator
+        }
+        
+        updateUI()
+    }
+    
+    func updateUI() {
+        if resultStrVaule != "" {
+            operatorLabel.text = "\(leftStrValue) \(currentOperator.rawValue) \(rightStrValue) ="
+            mainDisplayLabel.text = resultStrVaule
+        } else {
+            if currentOperator != CalcOperator.Empty {
+                operatorLabel.text = "\(leftStrValue) \(currentOperator.rawValue)"
+                
+                if runningNumber != "" {
+                    mainDisplayLabel.text = runningNumber
+                } else {
+                    mainDisplayLabel.text = ""
+                }
+            } else {
+                operatorLabel.text = ""
+                mainDisplayLabel.text = "0"
+
+            }
         }
     }
     
