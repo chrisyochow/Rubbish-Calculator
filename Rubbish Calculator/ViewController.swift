@@ -58,6 +58,13 @@ class ViewController: UIViewController {
         
         runningNumber += "\(sender.tag)"
         
+        if resultStrValue != "" {
+            leftStrValue = ""
+            rightStrValue = ""
+            resultStrValue = ""
+            currentOperator = CalculationOperators.Empty
+        }
+
         updateUI()
     }
     
