@@ -113,6 +113,20 @@ class ViewController: UIViewController {
         performOperation(btnPressed: CalculationOperators.Equal)
     }
     
+    @IBAction func dotBtnPressed(sender: UIButton) {
+        //playBtnSound()
+        
+        if runningNumber == "" {
+            runningNumber = "0."
+        } else {
+            if !runningNumber.contains(".") {
+                runningNumber += "."
+            }
+        }
+        
+        updateUI()
+    }
+    
     func performOperation(btnPressed: CalculationOperators) {
         if currentOperator == CalculationOperators.Empty || resultStrValue != "" {
             if btnPressed != CalculationOperators.Equal {
