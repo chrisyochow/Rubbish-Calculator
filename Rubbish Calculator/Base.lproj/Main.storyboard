@@ -259,6 +259,9 @@
                                                 <state key="normal" title=".">
                                                     <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                 </state>
+                                                <connections>
+                                                    <action selector="dotBtnPressedWithSender:" destination="BYZ-38-t0r" eventType="touchUpInside" id="2KG-5N-bUG"/>
+                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sG0-Tk-j3N">
                                                 <rect key="frame" x="241" y="0.0" width="79" height="63"/>
