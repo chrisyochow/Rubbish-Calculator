@@ -127,6 +127,22 @@ class ViewController: UIViewController {
         updateUI()
     }
     
+    @IBAction func negativeBtnPressed(sender: UIButton) {
+        //playBtnSound()
+        
+        if runningNumber != "" {
+            runningNumber = "\(Double(runningNumber)! * -1)"
+        } else if resultStrValue != "" {
+            runningNumber = "\(Double(resultStrValue)! * -1)"
+            leftStrValue = ""
+            rightStrValue = ""
+            resultStrValue = ""
+            currentOperator = CalculationOperators.Empty
+        }
+        
+        updateUI()
+    }
+    
     func performOperation(btnPressed: CalculationOperators) {
         if currentOperator == CalculationOperators.Empty || resultStrValue != "" {
             if btnPressed != CalculationOperators.Equal {
@@ -174,14 +190,14 @@ class ViewController: UIViewController {
     
     func updateUI() {
         if resultStrValue != "" {
-            operatorLabel.text = "\(leftStrValue) \(currentOperator.rawValue) \(rightStrValue) ="
-            mainDisplayLabel.text = resultStrValue
+            operatorLabel.text = "\(Double(leftStrValue)!) \(currentOperator.rawValue) \(Double(rightStrValue)!) ="
+            mainDisplayLabel.text = "\(Double(resultStrValue)!)"
             
             cancelBtn.setTitle("AC", for: UIControlState.normal)
         } else if currentOperator != CalculationOperators.Empty {
-            operatorLabel.text = "\(leftStrValue) \(currentOperator.rawValue)"
+            operatorLabel.text = "\(Double(leftStrValue)!) \(currentOperator.rawValue)"
             if runningNumber != "" {
-                mainDisplayLabel.text = runningNumber
+                mainDisplayLabel.text = "\(Double(runningNumber)!)"
                 
                 cancelBtn.setTitle("C", for: UIControlState.normal)
             } else {
@@ -192,7 +208,7 @@ class ViewController: UIViewController {
         } else {
             operatorLabel.text = ""
             if runningNumber != "" {
-                mainDisplayLabel.text = runningNumber
+                mainDisplayLabel.text = "\(Double(runningNumber)!)"
             } else {
                 mainDisplayLabel.text = "0"
             }
