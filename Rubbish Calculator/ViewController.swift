@@ -190,14 +190,14 @@ class ViewController: UIViewController {
     
     func updateUI() {
         if resultStrValue != "" {
-            operatorLabel.text = "\(leftStrValue) \(currentOperator.rawValue) \(rightStrValue) ="
-            mainDisplayLabel.text = resultStrValue
+            operatorLabel.text = "\(Double(leftStrValue)!) \(currentOperator.rawValue) \(Double(rightStrValue)!) ="
+            mainDisplayLabel.text = "\(Double(resultStrValue)!)"
             
             cancelBtn.setTitle("AC", for: UIControlState.normal)
         } else if currentOperator != CalculationOperators.Empty {
-            operatorLabel.text = "\(leftStrValue) \(currentOperator.rawValue)"
+            operatorLabel.text = "\(Double(leftStrValue)!) \(currentOperator.rawValue)"
             if runningNumber != "" {
-                mainDisplayLabel.text = runningNumber
+                mainDisplayLabel.text = "\(Double(runningNumber)!)"
                 
                 cancelBtn.setTitle("C", for: UIControlState.normal)
             } else {
@@ -208,7 +208,7 @@ class ViewController: UIViewController {
         } else {
             operatorLabel.text = ""
             if runningNumber != "" {
-                mainDisplayLabel.text = runningNumber
+                mainDisplayLabel.text = "\(Double(runningNumber)!)"
             } else {
                 mainDisplayLabel.text = "0"
             }
