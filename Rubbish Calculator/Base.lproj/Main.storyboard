@@ -61,6 +61,9 @@
                                                 <state key="normal" title="+/-">
                                                     <color key="titleColor" red="0.20000000300000001" green="0.20000000300000001" blue="0.20000000300000001" alpha="1" colorSpace="calibratedRGB"/>
                                                 </state>
+                                                <connections>
+                                                    <action selector="negativeBtnPressedWithSender:" destination="BYZ-38-t0r" eventType="touchUpInside" id="536-M6-Vcp"/>
+                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xcf-Xr-9Ir">
                                                 <rect key="frame" x="160.5" y="0.0" width="79.5" height="63"/>

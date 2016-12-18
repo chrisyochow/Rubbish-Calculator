@@ -127,6 +127,22 @@ class ViewController: UIViewController {
         updateUI()
     }
     
+    @IBAction func negativeBtnPressed(sender: UIButton) {
+        //playBtnSound()
+        
+        if runningNumber != "" {
+            runningNumber = "\(Double(runningNumber)! * -1)"
+        } else if resultStrValue != "" {
+            runningNumber = "\(Double(resultStrValue)! * -1)"
+            leftStrValue = ""
+            rightStrValue = ""
+            resultStrValue = ""
+            currentOperator = CalculationOperators.Empty
+        }
+        
+        updateUI()
+    }
+    
     func performOperation(btnPressed: CalculationOperators) {
         if currentOperator == CalculationOperators.Empty || resultStrValue != "" {
             if btnPressed != CalculationOperators.Equal {
