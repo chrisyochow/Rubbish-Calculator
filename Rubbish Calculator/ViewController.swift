@@ -54,7 +54,7 @@ class ViewController: UIViewController {
     }
 
     @IBAction func numberBtnPressed(sender: UIButton) {
-        //playBtnSound()
+        playBtnSound()
         
         runningNumber += "\(sender.tag)"
         
@@ -69,7 +69,7 @@ class ViewController: UIViewController {
     }
     
     @IBAction func cancelBtnPressed(sender: UIButton) {
-        //playBtnSound()
+        playBtnSound()
         
         if runningNumber != "" {
             runningNumber = ""
@@ -84,37 +84,37 @@ class ViewController: UIViewController {
     }
     
     @IBAction func divideBtnPressed(sender: UIButton) {
-        //playBtnSound()
+        playBtnSound()
         
         performOperation(btnPressed: CalculationOperators.Divide)
     }
     
     @IBAction func multiplyBtnPressed(sender: UIButton) {
-        //playBtnSound()
+        playBtnSound()
         
         performOperation(btnPressed: CalculationOperators.Multiply)
     }
     
     @IBAction func subtractBtnPressed(sender: UIButton) {
-        //playBtnSound()
+        playBtnSound()
         
         performOperation(btnPressed: CalculationOperators.Subtract)
     }
     
     @IBAction func addBtnPressed(sender: UIButton) {
-        //playBtnSound()
+        playBtnSound()
         
         performOperation(btnPressed: CalculationOperators.Add)
     }
     
     @IBAction func equalBtnPressed(sender: UIButton) {
-        //playBtnSound()
+        playBtnSound()
         
         performOperation(btnPressed: CalculationOperators.Equal)
     }
     
     @IBAction func dotBtnPressed(sender: UIButton) {
-        //playBtnSound()
+        playBtnSound()
         
         if runningNumber == "" {
             runningNumber = "0."
@@ -128,7 +128,7 @@ class ViewController: UIViewController {
     }
     
     @IBAction func negativeBtnPressed(sender: UIButton) {
-        //playBtnSound()
+        playBtnSound()
         
         if runningNumber != "" {
             runningNumber = "\(Double(runningNumber)! * -1)"
@@ -228,6 +228,6 @@ class ViewController: UIViewController {
             btnSoundPlayer.stop()
         }
         
-        btnSoundPlayer.play()
+        //btnSoundPlayer.play()
     }
 }
