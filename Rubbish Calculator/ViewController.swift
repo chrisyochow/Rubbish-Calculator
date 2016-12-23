@@ -16,8 +16,8 @@ class ViewController: UIViewController {
     @IBOutlet weak var cancelBtn: UIButton!
     
     enum CalculationOperators: String {
-        case Divide = "/"
-        case Multiply = "*"
+        case Divide = "÷"
+        case Multiply = "×"
         case Subtract = "-"
         case Add = "+"
         case Equal = "="
@@ -189,33 +189,73 @@ class ViewController: UIViewController {
     }
     
     func updateUI() {
+        var operatorLblStr = ""
+        var mainDisplayLblStr = ""
+        
         if resultStrValue != "" {
-            operatorLabel.text = "\(Double(leftStrValue)!) \(currentOperator.rawValue) \(Double(rightStrValue)!) ="
-            mainDisplayLabel.text = "\(Double(resultStrValue)!)"
+            if leftStrValue.hasSuffix(".0") || !leftStrValue.contains(".") {
+                operatorLblStr = leftStrValue.replacingOccurrences(of: ".0", with: "")
+            } else {
+                operatorLblStr = "\(Double(leftStrValue)!)"
+            }
+            operatorLblStr = "\(operatorLblStr) \(currentOperator.rawValue)"
+            if rightStrValue.hasSuffix(".0") || !rightStrValue.contains(".") {
+                operatorLblStr = "\(operatorLblStr) \(rightStrValue.replacingOccurrences(of: ".0", with: "")) ="
+            } else {
+                operatorLblStr = "\(operatorLblStr) \(Double(rightStrValue)!) ="
+            }
+            
+            if resultStrValue.hasSuffix(".0") || !resultStrValue.contains(".") {
+                mainDisplayLblStr = resultStrValue.replacingOccurrences(of: ".0", with: "")
+            } else {
+                mainDisplayLblStr = "\(Double(resultStrValue)!)"
+            }
             
             cancelBtn.setTitle("AC", for: UIControlState.normal)
         } else if currentOperator != CalculationOperators.Empty {
-            operatorLabel.text = "\(Double(leftStrValue)!) \(currentOperator.rawValue)"
+            if leftStrValue.hasSuffix(".0") || !leftStrValue.contains(".") {
+                operatorLblStr = leftStrValue.replacingOccurrences(of: ".0", with: "")
+            } else {
+                operatorLblStr = "\(Double(leftStrValue)!)"
+            }
+            operatorLblStr = "\(operatorLblStr) \(currentOperator.rawValue)"
+            
             if runningNumber != "" {
-                mainDisplayLabel.text = "\(Double(runningNumber)!)"
+                if runningNumber.hasSuffix(".0") || !runningNumber.contains(".") {
+                    mainDisplayLblStr = runningNumber.replacingOccurrences(of: ".0", with: "")
+                } else if runningNumber.hasSuffix(".") {
+                    mainDisplayLblStr = runningNumber
+                } else {
+                    mainDisplayLblStr = "\(Double(runningNumber)!)"
+                }
                 
                 cancelBtn.setTitle("C", for: UIControlState.normal)
             } else {
-                mainDisplayLabel.text = ""
+                mainDisplayLblStr = ""
                 
                 cancelBtn.setTitle("AC", for: UIControlState.normal)
             }
         } else {
-            operatorLabel.text = ""
+            operatorLblStr = ""
+            
             if runningNumber != "" {
-                mainDisplayLabel.text = "\(Double(runningNumber)!)"
+                if runningNumber.hasSuffix(".0") || !runningNumber.contains(".") {
+                    mainDisplayLblStr = runningNumber.replacingOccurrences(of: ".0", with: "")
+                } else if runningNumber.hasSuffix(".") {
+                    mainDisplayLblStr = runningNumber
+                } else {
+                    mainDisplayLblStr = "\(Double(runningNumber)!)"
+                }
             } else {
-                mainDisplayLabel.text = "0"
+                mainDisplayLblStr = "0"
             }
             
             cancelBtn.setTitle("AC", for: UIControlState.normal)
         }
         
+        operatorLabel.text = operatorLblStr
+        mainDisplayLabel.text = mainDisplayLblStr
+       
         print("runningNumber = \(runningNumber)")
         print("leftStrValue = \(leftStrValue)")
         print("rightStrValue = \(rightStrValue)")
